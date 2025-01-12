@@ -42,9 +42,9 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -f Dockerfile.main -t ${{ secrets.DOCKER_USERNAME }} .
+          docker build -f Dockerfile.main -t ${{ secrets.DOCKER_USERNAME }}/ruby-app:latest .
 
       - name: Push Docker Image
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker push ${{ secrets.DOCKER_USERNAME }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ruby-app:latest
