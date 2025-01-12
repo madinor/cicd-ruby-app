@@ -11,18 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-      - name: Print Current Directory
-        run: pwd
-        
-      - name: List Files
-        run: ls -la
         
       - name: Setup Dependencies
-        working-directory: ${{ github.workspace }}
         run: |
           gem install bundler
           bundle install --gemfile=Gemfile
@@ -45,7 +42,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -f Dockerfile.develop -t ${{ secrets.DOCKER_USERNAME }} .
+          docker build -f Dockerfile.main -t ${{ secrets.DOCKER_USERNAME }} .
 
       - name: Push Docker Image
         run: |
