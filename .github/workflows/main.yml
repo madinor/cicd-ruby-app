@@ -18,7 +18,6 @@ jobs:
 
       - name: Setup Dependencies
         run: |
-         ## gem install bundler
           bundle install
 
       - name: Linting and Styling
